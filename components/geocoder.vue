@@ -69,7 +69,7 @@ export default {
       )
     },
     clearData() {
-      this.oReverseResult = { will_appear_as: 'json' }
+      this.oResult = { will_appear_as: 'json' }
       this.sStreet = ''
       this.sCity = ''
       this.sState = ''
