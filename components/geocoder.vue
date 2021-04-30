@@ -20,10 +20,10 @@
       </v-row>
     </v-card-text>
     <v-card-actions class="mb-6"
-      ><v-btn @click="geocode"
+      ><v-btn @click="geocode" :disabled="!bIsValid"
         ><v-icon class="mr-2">mdi-magnify</v-icon>Search</v-btn
       >
-      <v-btn @click="oResult = { willAppearAs: 'json' }"
+      <v-btn @click="clearData"
         ><v-icon class="mr-2">mdi-backspace</v-icon>Clear</v-btn
       ></v-card-actions
     >
@@ -55,6 +55,9 @@ export default {
     sZip: ''
   }),
   computed: {
+    bIsValid() {
+      return !!this.sStreet && !!this.sCity && !!this.sState && !!this.sZip
+    },
     sFullAddress() {
       return `${this.sStreet} ${this.sCity}, ${this.sState} ${this.sZip}`
     }
@@ -64,6 +67,13 @@ export default {
       this.oResult = await this.$geoCodeApi.$get(
         `/search.php?q=${this.sFullAddress}&polygon_geojson=1&format=jsonv2`
       )
+    },
+    clearData() {
+      this.oReverseResult = { will_appear_as: 'json' }
+      this.sStreet = ''
+      this.sCity = ''
+      this.sState = ''
+      this.sZip = ''
     }
   }
 }

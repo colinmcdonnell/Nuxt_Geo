@@ -14,10 +14,10 @@
       </v-row>
     </v-card-text>
     <v-card-actions class="mb-6"
-      ><v-btn @click="reverseGeocode"
+      ><v-btn @click="reverseGeocode" :disabled="!bIsValid"
         ><v-icon class="mr-2">mdi-magnify</v-icon>Search</v-btn
       >
-      <v-btn @click="oReverseResult = { willAppearAs: 'json' }"
+      <v-btn @click="clearData"
         ><v-icon class="mr-2">mdi-backspace</v-icon>Clear</v-btn
       ></v-card-actions
     >
@@ -44,6 +44,11 @@ export default {
     sLat: '',
     sLong: ''
   }),
+  computed: {
+    bIsValid() {
+      return !!this.sLat && !!this.sLong
+    }
+  },
   methods: {
     async reverseGeocode() {
       this.oReverseResult = await this.$geoCodeApi.$get(
@@ -51,6 +56,11 @@ export default {
           this.sLong
         )}&zoom=18&addressdetails=1`
       )
+    },
+    clearData() {
+      this.oReverseResult = { will_appear_as: 'json' }
+      this.sLat = ''
+      this.sLong = ''
     }
   }
 }
