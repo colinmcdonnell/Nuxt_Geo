@@ -47,7 +47,7 @@
 export default {
   name: 'Geocoder',
   data: () => ({
-    oResult: { willAppearAs: 'json' },
+    oResult: { will_appear_as: 'json' },
     // address
     sStreet: '',
     sCity: '',

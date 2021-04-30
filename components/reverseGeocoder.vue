@@ -39,7 +39,7 @@
 export default {
   name: 'ReverseGeocoder',
   data: () => ({
-    oReverseResult: { willAppearAs: 'json' },
+    oReverseResult: { will_appear_as: 'json' },
     // coordinates
     sLat: '',
     sLong: ''
