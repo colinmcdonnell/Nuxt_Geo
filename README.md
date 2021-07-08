@@ -4,8 +4,19 @@ Simple page to geocode or reverse geocode with a few fun frameworks
 
 ### Clone and run
 
-- npm i --save
-- local dev: npm run dev
+Install dependencies:
+
+```shell
+npm i --save
+```
+
+Local dev environment:
+
+```shell
+npm run dev
+```
+
+Please refer to [Nuxt.js official documentation](https://nuxtjs.org/docs/2.x/get-started/commands) for information regarding commands and deployments.
 
 ### Geocoding
 
@@ -29,4 +40,4 @@ Output will include house number, road, city, county, state, postcode, country, 
 
 ### API
 
-[OpenStreetMap](https://www.openstreetmap.org/)
+- [OpenStreetMap](https://www.openstreetmap.org/)
