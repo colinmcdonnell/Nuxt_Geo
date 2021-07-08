@@ -2,7 +2,7 @@
 
 Simple page to geocode or reverse geocode with a few fun frameworks
 
-### Clone and run
+## Clone and run
 
 Install dependencies:
 
@@ -18,19 +18,19 @@ npm run dev
 
 Please refer to [Nuxt.js official documentation](https://nuxtjs.org/docs/2.x/get-started/commands) for information regarding commands and deployments.
 
-### Geocoding
+## Geocoding
 
 Enter street, city, state and zip.
 
 Output will include latitude, longitude and all other available data provided by the OpenStreetMap API.
 
-### Reverse Geocoding
+## Reverse Geocoding
 
 Enter latitude and longitude.
 
 Output will include house number, road, city, county, state, postcode, country, country code and all other available data provided by the OpenStreetMap API.
 
-### Frameworks
+## Frameworks
 
 - [Vue.js](http://vuejs.org/)
 
@@ -38,6 +38,6 @@ Output will include house number, road, city, county, state, postcode, country, 
 
 - [Vuetify](https://vuetifyjs.com/en/) (Material Design Framework)
 
-### API
+## API
 
 - [OpenStreetMap](https://www.openstreetmap.org/)

@@ -1,7 +1,7 @@
 {
-  "name": "vue-geo",
+  "name": "nuxt-geo",
   "version": "1.0.0",
-  "description": "Geocoder built with Vue.js/Nuxt.js",
+  "description": "Geocoder built with Vue.js/Nuxt.js and Vuetify using OpenStreetMap",
   "author": "Colin McDonnell",
   "private": true,
   "scripts": {
