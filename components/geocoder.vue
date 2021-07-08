@@ -5,21 +5,21 @@
     </v-card-title>
     <v-card-text>
       <v-row>
-        <v-col cols="3">
-          <v-text-field v-model="sStreet" label="Street" />
+        <v-col cols="12" sm="6" md="3">
+          <v-text-field v-model="street" label="Street" />
         </v-col>
-        <v-col cols="3">
-          <v-text-field v-model="sCity" label="City" />
+        <v-col cols="12" sm="6" md="3">
+          <v-text-field v-model="city" label="City" />
         </v-col>
-        <v-col cols="3">
-          <v-text-field v-model="sState" label="State" />
+        <v-col cols="12" sm="6" md="3">
+          <v-text-field v-model="state" label="State" />
         </v-col>
-        <v-col cols="3">
-          <v-text-field v-model="sZip" label="Zip" />
+        <v-col cols="12" sm="6" md="3">
+          <v-text-field v-model="zip" label="Zip" />
         </v-col>
       </v-row>
     </v-card-text>
-    <v-card-actions class="mb-6"
+    <v-card-actions class="mb-6 ml-2"
       ><v-btn @click="geocode" :disabled="!bIsValid"
         ><v-icon class="mr-2">mdi-magnify</v-icon>Search</v-btn
       >
@@ -31,14 +31,14 @@
       <h3>Geocode Results</h3>
     </v-card-title>
     <v-card-text>
-      Latitude: {{ oResult[0] ? oResult[0].lat : '' }}
+      Latitude: {{ searchResults[0] ? searchResults[0].lat : '' }}
       <br />
       Longitude:
-      {{ oResult[0] ? oResult[0].lon : '' }}
+      {{ searchResults[0] ? searchResults[0].lon : '' }}
     </v-card-text>
     <v-card-text>
       All Data:
-      <pre>{{ oResult ? oResult : '' }}</pre>
+      <pre>{{ searchResults ? searchResults : '' }}</pre>
     </v-card-text>
   </v-card>
 </template>
@@ -47,33 +47,33 @@
 export default {
   name: 'Geocoder',
   data: () => ({
-    oResult: { will_appear_as: 'json' },
+    searchResults: { will_appear_as: 'json' },
     // address
-    sStreet: '',
-    sCity: '',
-    sState: '',
-    sZip: ''
+    street: '',
+    city: '',
+    state: '',
+    zip: ''
   }),
   computed: {
     bIsValid() {
-      return !!this.sStreet && !!this.sCity && !!this.sState && !!this.sZip
+      return !!this.street && !!this.city && !!this.state && !!this.zip
     },
     sFullAddress() {
-      return `${this.sStreet} ${this.sCity}, ${this.sState} ${this.sZip}`
+      return `${this.street} ${this.city}, ${this.state} ${this.zip}`
     }
   },
   methods: {
     async geocode() {
-      this.oResult = await this.$geoCodeApi.$get(
+      this.searchResults = await this.$geoCodeApi.$get(
         `/search.php?q=${this.sFullAddress}&polygon_geojson=1&format=jsonv2`
       )
     },
     clearData() {
-      this.oResult = { will_appear_as: 'json' }
-      this.sStreet = ''
-      this.sCity = ''
-      this.sState = ''
-      this.sZip = ''
+      this.searchResults = { will_appear_as: 'json' }
+      this.street = ''
+      this.city = ''
+      this.state = ''
+      this.zip = ''
     }
   }
 }

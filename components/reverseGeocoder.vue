@@ -5,15 +5,15 @@
     </v-card-title>
     <v-card-text>
       <v-row>
-        <v-col cols="6">
-          <v-text-field v-model="sLat" label="Latitude" />
+        <v-col cols="12" sm="6">
+          <v-text-field v-model="lat" label="Latitude" />
         </v-col>
-        <v-col cols="6">
-          <v-text-field v-model="sLong" label="Longitude" />
+        <v-col cols="12" sm="6">
+          <v-text-field v-model="long" label="Longitude" />
         </v-col>
       </v-row>
     </v-card-text>
-    <v-card-actions class="mb-6"
+    <v-card-actions class="mb-6 ml-2"
       ><v-btn @click="reverseGeocode" :disabled="!bIsValid"
         ><v-icon class="mr-2">mdi-magnify</v-icon>Search</v-btn
       >
@@ -26,11 +26,11 @@
     </v-card-title>
     <v-card-text>
       Address:
-      <pre>{{ oReverseResult ? oReverseResult.address : '' }}</pre>
+      <pre>{{ reverseSearchResults ? reverseSearchResults.address : '' }}</pre>
     </v-card-text>
     <v-card-text>
       All Data:
-      <pre>{{ oReverseResult ? oReverseResult : '' }}</pre>
+      <pre>{{ reverseSearchResults ? reverseSearchResults : '' }}</pre>
     </v-card-text>
   </v-card>
 </template>
@@ -39,28 +39,28 @@
 export default {
   name: 'ReverseGeocoder',
   data: () => ({
-    oReverseResult: { will_appear_as: 'json' },
+    reverseSearchResults: { will_appear_as: 'json' },
     // coordinates
-    sLat: '',
-    sLong: ''
+    lat: '',
+    long: ''
   }),
   computed: {
     bIsValid() {
-      return !!this.sLat && !!this.sLong
+      return !!this.lat && !!this.long
     }
   },
   methods: {
     async reverseGeocode() {
-      this.oReverseResult = await this.$geoCodeApi.$get(
-        `/reverse?format=json&lat=${parseFloat(this.sLat)}&lon=${parseFloat(
-          this.sLong
+      this.reverseSearchResults = await this.$geoCodeApi.$get(
+        `/reverse?format=json&lat=${parseFloat(this.lat)}&lon=${parseFloat(
+          this.long
         )}&zoom=18&addressdetails=1`
       )
     },
     clearData() {
-      this.oReverseResult = { will_appear_as: 'json' }
-      this.sLat = ''
-      this.sLong = ''
+      this.reverseSearchResults = { will_appear_as: 'json' }
+      this.lat = ''
+      this.long = ''
     }
   }
 }
