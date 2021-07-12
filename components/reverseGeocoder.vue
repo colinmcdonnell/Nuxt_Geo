@@ -1,26 +1,36 @@
 <template>
-  <v-card class="mt-15">
+  <v-card class="mt-8 mt-md-15">
     <v-card-title>
       <h2>Reverse Geocoder</h2>
     </v-card-title>
-    <v-card-text>
-      <v-row>
-        <v-col cols="12" sm="6">
-          <v-text-field v-model="lat" label="Latitude" />
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-text-field v-model="long" label="Longitude" />
-        </v-col>
-      </v-row>
-    </v-card-text>
-    <v-card-actions class="mb-6 ml-2"
-      ><v-btn @click="reverseGeocode" :disabled="!bIsValid"
-        ><v-icon class="mr-2">mdi-magnify</v-icon>Search</v-btn
+    <v-form ref="form" v-model="isValid" lazy-validation>
+      <v-card-text>
+        <v-row>
+          <v-col cols="12" sm="6">
+            <v-text-field
+              v-model="lat"
+              label="Latitude"
+              :rules="$validation.required"
+            />
+          </v-col>
+          <v-col cols="12" sm="6">
+            <v-text-field
+              v-model="long"
+              label="Longitude"
+              :rules="$validation.required"
+            />
+          </v-col>
+        </v-row>
+      </v-card-text>
+      <v-card-actions class="mb-6 ml-2"
+        ><v-btn @click="reverseGeocode" :disabled="!isValid"
+          ><v-icon class="mr-2">mdi-magnify</v-icon>Search</v-btn
+        >
+        <v-btn @click="clearData"
+          ><v-icon class="mr-2">mdi-backspace</v-icon>Clear</v-btn
+        ></v-card-actions
       >
-      <v-btn @click="clearData"
-        ><v-icon class="mr-2">mdi-backspace</v-icon>Clear</v-btn
-      ></v-card-actions
-    >
+    </v-form>
     <v-card-title>
       <h3>Reverse Geocode Results</h3>
     </v-card-title>
@@ -39,10 +49,10 @@
 export default {
   name: 'ReverseGeocoder',
   data: () => ({
-    reverseSearchResults: { will_appear_as: 'json' },
-    // coordinates
     lat: '',
-    long: ''
+    long: '',
+    isValid: '',
+    reverseSearchResults: { will_appear_as: 'json' }
   }),
   computed: {
     bIsValid() {

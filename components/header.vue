@@ -1,20 +1,38 @@
 <template>
   <div class="page-header">
-    <div v-show="!isLoading" class="pointer-cursor" @click="toggleTheme">
-      <v-icon class="mr-2">{{
-        !this.$nuxt.$vuetify.theme.isDark
-          ? 'mdi-weather-night'
-          : 'mdi-weather-sunny'
-      }}</v-icon
-      >Theme
-    </div>
+    <v-icon x-large @click.stop="drawer = !drawer">mdi-menu</v-icon>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="d-flex"
+            >Menu
+            <v-icon class="ml-auto" @click.stop="drawer = !drawer"
+              >mdi-close</v-icon
+            ></v-list-item-title
+          >
+        </v-list-item-content>
+      </v-list-item>
+      <v-divider></v-divider>
+      <v-list dense>
+        <v-list-item @click="toggleTheme" class="pointer-cursor">
+          <v-icon x-large class="mr-2">{{
+            !this.$nuxt.$vuetify.theme.isDark
+              ? 'mdi-weather-night'
+              : 'mdi-weather-sunny'
+          }}</v-icon>
+          Theme
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
     <v-skeleton-loader
       v-if="isLoading"
       type="text"
       :loading="isLoading"
-      class="mt-12"
+      class="mt-8 mt-md-12"
     />
-    <h1 v-else class="text-center">Address Lookup with OpenStreetMap</h1>
+    <h1 v-else class="text-left text-md-center">
+      Geocoding with OpenStreetMap
+    </h1>
   </div>
 </template>
 
@@ -23,6 +41,9 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'PageHeader',
+  data: () => ({
+    drawer: null
+  }),
   computed: {
     ...mapState({
       isLoading: (state) => state.config.isLoading
