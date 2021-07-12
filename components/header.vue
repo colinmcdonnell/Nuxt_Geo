@@ -32,7 +32,7 @@
       :loading="isLoading"
       class="mt-8 mt-md-12"
     />
-    <h1 v-else class="text-left text-md-center">
+    <h1 v-else class="text-left text-md-center mt-5">
       Geocoding with OpenStreetMap
     </h1>
   </div>
