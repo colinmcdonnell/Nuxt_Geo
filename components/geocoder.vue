@@ -11,6 +11,7 @@
               v-model="street"
               label="Street"
               :rules="$validation.required"
+              tabindex="1"
             />
           </v-col>
           <v-col cols="12" sm="6" md="3">
@@ -18,6 +19,7 @@
               v-model="city"
               label="City"
               :rules="$validation.required"
+              tabindex="2"
             />
           </v-col>
           <v-col cols="12" sm="6" md="3">
@@ -26,6 +28,7 @@
               label="State"
               :items="stateList"
               :rules="$validation.required"
+              tabindex="3"
             />
           </v-col>
           <v-col cols="12" sm="6" md="3">
@@ -33,7 +36,9 @@
               v-model="zip"
               label="Zip"
               v-mask="'#####'"
+              type="tel"
               :rules="$validation.required"
+              tabindex="4"
             />
           </v-col>
         </v-row>

@@ -11,6 +11,7 @@
               v-model="lat"
               label="Latitude"
               :rules="$validation.required"
+              tabindex="1"
             />
           </v-col>
           <v-col cols="12" sm="6">
@@ -18,6 +19,7 @@
               v-model="long"
               label="Longitude"
               :rules="$validation.required"
+              tabindex="2"
             />
           </v-col>
         </v-row>
