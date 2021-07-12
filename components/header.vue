@@ -1,7 +1,9 @@
 <template>
   <div class="page-header">
-    <v-icon x-large @click.stop="drawer = !drawer">mdi-menu</v-icon>
-    <v-navigation-drawer v-model="drawer" absolute temporary>
+    <v-icon v-if="!isLoading" x-large @click.stop="drawer = !drawer"
+      >mdi-menu</v-icon
+    >
+    <v-navigation-drawer v-if="!isLoading" v-model="drawer" absolute temporary>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="d-flex"
