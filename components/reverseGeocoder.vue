@@ -11,7 +11,6 @@
               v-model="lat"
               label="Latitude"
               :rules="$validation.required"
-              tabindex="1"
             />
           </v-col>
           <v-col cols="12" sm="6">
@@ -19,7 +18,6 @@
               v-model="long"
               label="Longitude"
               :rules="$validation.required"
-              tabindex="2"
             />
           </v-col>
         </v-row>
@@ -35,6 +33,7 @@
     </v-form>
     <v-card-title>
       <h3>Reverse Geocode Results</h3>
+      <loader class="ml-3" :loading="isLoading" :size="'32px'" />
     </v-card-title>
     <v-card-text>
       Address:
@@ -42,7 +41,7 @@
     </v-card-text>
     <v-card-text>
       All Data:
-      <pre>{{ reverseSearchResults ? reverseSearchResults : '' }}</pre>
+      <pre>{{ reverseSearchResults }}</pre>
     </v-card-text>
   </v-card>
 </template>
@@ -50,9 +49,13 @@
 <script>
 export default {
   name: 'ReverseGeocoder',
+  components: {
+    loader: () => import('./loader')
+  },
   data: () => ({
     lat: '',
     long: '',
+    isLoading: false,
     isValid: '',
     reverseSearchResults: { will_appear_as: 'json' }
   }),
@@ -63,16 +66,16 @@ export default {
   },
   methods: {
     async reverseGeocode() {
+      this.isLoading = true
       this.reverseSearchResults = await this.$geoCodeApi.$get(
         `/reverse?format=json&lat=${parseFloat(this.lat)}&lon=${parseFloat(
           this.long
         )}&zoom=18&addressdetails=1`
       )
+      this.isLoading = false
     },
     clearData() {
       this.reverseSearchResults = { will_appear_as: 'json' }
-      this.lat = ''
-      this.long = ''
     }
   }
 }
