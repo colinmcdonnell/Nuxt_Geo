@@ -1,8 +1,8 @@
 <template>
   <div class="v-spinner" v-show="loading">
     <div class="v-bounce v-bounce1" :style="spinnerBasicStyle">
-      <div class="v-bounce v-bounce2" :style="spinnerStyle"></div>
-      <div class="v-bounce v-bounce3" :style="spinnerStyle"></div>
+      <div class="v-bounce v-bounce2" :style="spinnerStyle" />
+      <div class="v-bounce v-bounce3" :style="spinnerStyle" />
     </div>
   </div>
 </template>

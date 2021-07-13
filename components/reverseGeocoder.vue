@@ -3,7 +3,7 @@
     <v-card-title>
       <h2>Reverse Geocoder</h2>
     </v-card-title>
-    <v-form ref="form" v-model="isValid" lazy-validation>
+    <v-form ref="form" v-model="isValid">
       <v-card-text>
         <v-row>
           <v-col cols="12" sm="6">
