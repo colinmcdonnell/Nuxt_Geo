@@ -44,12 +44,13 @@
           ><v-icon class="mr-2">mdi-magnify</v-icon>Search</v-btn
         >
         <v-btn @click="clearData"
-          ><v-icon class="mr-2">mdi-backspace</v-icon>Clear</v-btn
+          ><v-icon class="mr-2">mdi-backspace</v-icon>Clear Results</v-btn
         ></v-card-actions
       >
     </v-form>
+    <v-divider />
     <v-card-title>
-      <h3>Geocode Results</h3>
+      <h3>Results</h3>
       <loader class="ml-3" :loading="isLoading" :size="'32px'" />
     </v-card-title>
     <v-card-text>
