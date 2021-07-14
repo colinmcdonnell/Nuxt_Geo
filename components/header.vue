@@ -14,7 +14,7 @@
           >
         </v-list-item-content>
       </v-list-item>
-      <v-divider></v-divider>
+      <v-divider />
       <v-list dense>
         <v-list-item @click="toggleTheme" class="pointer-cursor">
           <v-icon x-large class="mr-2">{{
@@ -32,7 +32,7 @@
       :loading="isLoading"
       class="mt-8 mt-md-12"
     />
-    <h1 v-else class="text-left text-md-center mt-5">
+    <h1 v-else class="text-left text-md-center mt-6">
       Geocoding with OpenStreetMap
     </h1>
   </div>
